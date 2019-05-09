@@ -5,45 +5,62 @@
 
 import UIKit
 import AWSAppSync
+import AWSCognitoIdentityProvider
+
+let username = "USER"
+let password = "PASS"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var appSyncClient: AWSAppSyncClient?
+    var amplifyHelper: AmplifyHelper!
 
+    var appSyncClient: AWSAppSyncClient? {
+        return amplifyHelper.appSyncClient
+    }
+
+    var pool: AWSCognitoIdentityUserPool!
+
+    var mfaDelegate = MFADelegate()
+    var passwordDelegate = PasswordDelegate()
+    var rememberDeviceDelegate = RememberDeviceDelegate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // You can choose the directory in which AppSync stores its persistent cache databases:
-        //     let cacheConfiguration = AWSAppSyncCacheConfiguration(withRootDirectory: rootDirectoryURL)
-        // or use the default configuration to store the databases in the app's Cache directory:
-        //     let cacheConfiguration = AWSAppSyncCacheConfiguration()
-        // or use in-memory (rather than persistent) caching by not specifying a cache configuration:
-        //     let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncServiceConfig: AWSAppSyncServiceConfig())
-        // or even specify individual caches. Passing `nil` to any of these will cause it to be in-memory:
-        //     let cacheConfiguration= AWSAppSyncCacheConfiguration(
-        //         // or nil to use in-memory cache
-        //         offlineMutations: pathToOfflineMutationDB,
-        //         queries: pathToQueriesDB,
-        //         subscriptionMetadataCache: pathToSubscriptionMetadataDB)
 
-        do {
-            // initialize the AppSync client configuration configuration
-            let cacheConfiguration = try AWSAppSyncCacheConfiguration()
-            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncServiceConfig: AWSAppSyncServiceConfig(),
-                                                                  cacheConfiguration: cacheConfiguration)
-            // initialize app sync client
-            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
+        AWSDDLog.sharedInstance.logLevel = .verbose
+        AWSDDLog.sharedInstance.add(AWSDDTTYLogger.sharedInstance)
 
-            // set id as the cache key for objects
-            appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
+        pool = AWSCognitoIdentityUserPool.default()
+        pool.delegate = self
 
-            print("AppSyncClient initialized with cacheConfiguration: \(cacheConfiguration)")
-        } catch {
-            print("Error initializing AppSync client. \(error)")
+        let currentUser = pool.currentUser()
+        print("pool.currentUser: \(String(describing: currentUser))")
+        currentUser?.getSession().continueWith { task in
+            print("getSession.task: \(String(describing: task))")
+            guard task.error == nil else {
+                print("getSession error: \(task.error!)")
+                return nil
+            }
+
+            guard let session = task.result else {
+                print("getSession: task result unexpectedly nil")
+                return nil
+            }
+
+            guard let accessToken = session.accessToken?.tokenString else {
+                print("accessToken is nil")
+                return nil
+            }
+
+            UserDefaults.standard.set(accessToken, forKey: "accessToken")
+            return nil
         }
+
+        amplifyHelper = AmplifyHelper()
+        amplifyHelper.configureAmplify()
+
         return true
     }
 
@@ -68,7 +85,92 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
+// MARK:- AWSCognitoIdentityInteractiveAuthenticationDelegate protocol delegate
+
+extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
+
+    func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
+        return passwordDelegate
+    }
+
+    func startMultiFactorAuthentication() -> AWSCognitoIdentityMultiFactorAuthentication {
+        return mfaDelegate
+    }
+
+    func startRememberDevice() -> AWSCognitoIdentityRememberDevice {
+        return rememberDeviceDelegate
+    }
+}
+
+// MARK: - AWSCognitoIdentityPasswordAuthentication
+
+class PasswordDelegate: NSObject, AWSCognitoIdentityPasswordAuthentication {
+    var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
+
+    func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput,
+                    passwordAuthenticationCompletionSource: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
+
+        passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
+
+        let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: username,
+                                                                          password: password)
+
+        passwordAuthenticationCompletion?.set(result: authDetails)
+    }
+
+    func didCompleteStepWithError(_ error: Error?) {
+        if let error = error {
+            print("PasswordDelegate.\(#function) - error: \(error)")
+        } else {
+            print("PasswordDelegate.\(#function) - success")
+            let pool = AWSCognitoIdentityUserPool.default()
+            let currentUser = pool.currentUser()
+            print("pool.currentUser: \(String(describing: currentUser))")
+
+            currentUser?.getSession().continueWith { task in
+                print("getSession.task: \(String(describing: task))")
+            }
+        }
+    }
+}
+
+// MARK:- AWSCognitoIdentityRememberDevice protocol delegate
+
+class RememberDeviceDelegate: NSObject, AWSCognitoIdentityRememberDevice {
+    var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
+
+    func getRememberDevice(_ rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>) {
+        self.rememberDeviceCompletionSource = rememberDeviceCompletionSource
+        self.rememberDeviceCompletionSource?.set(result: false)
+    }
+
+    func didCompleteStepWithError(_ error: Error?) {
+        if let error = error {
+            print("DeviceRememberer.\(#function) - error: \(error)")
+        } else {
+            print("DeviceRememberer.\(#function) - success")
+        }
+    }
+}
+
+
+// MARK: - AWSCognitoIdentityMultiFactorAuthentication
+
+class MFADelegate: NSObject, AWSCognitoIdentityMultiFactorAuthentication {
+    var mfaCodeCompletionSource: AWSTaskCompletionSource<NSString>?
+
+    func getCode(_ authenticationInput: AWSCognitoIdentityMultifactorAuthenticationInput, mfaCodeCompletionSource: AWSTaskCompletionSource<NSString>) {
+        self.mfaCodeCompletionSource = mfaCodeCompletionSource
+        print("\(#function) code sent to \(String(describing: authenticationInput.destination))")
+    }
+
+    func didCompleteMultifactorAuthenticationStepWithError(_ error: Error?) {
+        if let error = error {
+            print("MFADelegate.\(#function) - error: \(error)")
+        } else {
+            print("MFADelegate.\(#function) - success")
+        }
+    }
+}

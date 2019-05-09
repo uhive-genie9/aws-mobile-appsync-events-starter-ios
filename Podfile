@@ -7,4 +7,6 @@ target 'EventsApp' do
 
   # Pods for EventsApp
   pod 'AWSAppSync', '~> 2.10.0'
+  pod 'AWSCognitoIdentityProvider', '~> 2.9.0'
+
 end

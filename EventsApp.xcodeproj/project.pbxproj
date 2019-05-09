@@ -17,6 +17,8 @@
 		17CBF3A81FB4B3A40015BC6A /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CBF3A71FB4B3A40015BC6A /* AddEventViewController.swift */; };
 		17E009071FC5EE8F005031DB /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E009061FC5EE8F005031DB /* EventDetails.swift */; };
 		F60B72A3DBBCB5EE5348BAE8 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49640E01CB7D0D9B4BABF41A /* Pods_EventsApp.framework */; };
+		FA0152D42284D3E6007E2E70 /* AmplifyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0152D32284D3E6007E2E70 /* AmplifyHelper.swift */; };
+		FA9148B12284CAB800F4C87D /* UserPoolAuthProviderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9148B02284CAB800F4C87D /* UserPoolAuthProviderHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +49,8 @@
 		49640E01CB7D0D9B4BABF41A /* Pods_EventsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F38C6DD729BD9564F31608 /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CC70F242478FEFDE57B38FAC /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
+		FA0152D32284D3E6007E2E70 /* AmplifyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmplifyHelper.swift; sourceTree = "<group>"; };
+		FA9148B02284CAB800F4C87D /* UserPoolAuthProviderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPoolAuthProviderHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 			children = (
 				170050FF21546E35008B16B6 /* awsconfiguration.json */,
 				17CBF3951FB4B2E00015BC6A /* AppDelegate.swift */,
+				FA0152D32284D3E6007E2E70 /* AmplifyHelper.swift */,
+				FA9148B02284CAB800F4C87D /* UserPoolAuthProviderHelper.swift */,
 				17CBF3971FB4B2E00015BC6A /* EventListViewController.swift */,
 				17CBF3A71FB4B3A40015BC6A /* AddEventViewController.swift */,
 				17CBF3991FB4B2E00015BC6A /* Main.storyboard */,
@@ -192,22 +198,34 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-EventsApp/Pods-EventsApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AWSAppSync/AWSAppSync.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthCore/AWSAuthCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSAuthUI/AWSAuthUI.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSMobileClient/AWSMobileClient.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSUserPoolsSignIn/AWSUserPoolsSignIn.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAppSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAuthUI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSMobileClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSUserPoolsSignIn.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EventsApp/Pods-EventsApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ED059264170C7BF1D3ED2383 /* [CP] Check Pods Manifest.lock */ = {
@@ -235,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA9148B12284CAB800F4C87D /* UserPoolAuthProviderHelper.swift in Sources */,
+				FA0152D42284D3E6007E2E70 /* AmplifyHelper.swift in Sources */,
 				17E009071FC5EE8F005031DB /* EventDetails.swift in Sources */,
 				17CBF3981FB4B2E00015BC6A /* EventListViewController.swift in Sources */,
 				171A410D1FC5649F0040C400 /* EventsAPI.swift in Sources */,
