@@ -37,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let currentUser = pool.currentUser()
         print("pool.currentUser: \(String(describing: currentUser))")
+
         currentUser?.getSession().continueWith { task in
             print("getSession.task: \(String(describing: task))")
             guard task.error == nil else {

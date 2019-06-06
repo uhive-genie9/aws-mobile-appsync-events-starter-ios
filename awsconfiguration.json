@@ -1,15 +1,22 @@
-﻿{
+{
     "UserAgent": "aws-amplify-cli/0.1.0",
     "Version": "1.0",
     "IdentityManager": {
         "Default": {}
     },
+    "CognitoUserPool": {
+        "Default": {
+            "PoolId": "<poolId>",
+            "AppClientId": "<clientId>",
+            "AppClientSecret": "<secret>",
+            "Region": "<region>"
+        }
+    },
     "AppSync": {
         "Default": {
-        "ApiUrl": "https://abcdefghijklmnop.appsync-api.us-west-2.amazonaws.com/graphql",
-        "Region": "us-west-2",
-        "AuthMode": "API_KEY",
-        "ApiKey": "xxx-xxxxxxxxxxxxxxxx"
+        "ApiUrl": "<url>",
+        "Region": "<region>",
+        "AuthMode": "AMAZON_COGNITO_USER_POOLS"
         }
     }
 }
