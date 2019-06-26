@@ -8,12 +8,13 @@
 
 import Foundation
 import AWSAppSync
+import AWSCore
 
 class AmplifyHelper {
 
     var appSyncClient: AWSAppSyncClient?
-    
-    func configureAmplify() {
+    var newMessagesSubscriptionWatcher: AWSAppSyncSubscriptionWatcher<SubscribeByUserIdSubscription>?
+    func configureAmplify(completion:@escaping () -> Void) {
 
         // You can choose the directory in which AppSync stores its persistent cache databases:
         //     let cacheConfiguration = AWSAppSyncCacheConfiguration(withRootDirectory: rootDirectoryURL)
@@ -45,6 +46,7 @@ class AmplifyHelper {
             appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
 
             print("AppSyncClient initialized with cacheConfiguration: \(cacheConfiguration)")
+            completion()
         } catch AWSAppSyncClientError.requestFailed(_, _, _){
             print("requestFailed")
         } catch AWSAppSyncClientError.authenticationError(_) {
@@ -57,5 +59,68 @@ class AmplifyHelper {
             print("general error: \(error)")
         }
 
+    }
+    
+    func startUserSubscription(completion: (() -> Void)? = nil) {
+        
+        let userSubscribtion = SubscribeByUserIdSubscription(receiver_id: 7506)
+
+        do {
+            //the following statement is assigned to a cancellabe variable, cancellable = try appSyncCleint.., etc.
+            newMessagesSubscriptionWatcher = try appSyncClient?.subscribe(subscription: userSubscribtion, statusChangeHandler: { status in
+                self.handleSubscriptionStatus(status, senderId: 7506)
+            }, resultHandler: {(result, _, error) in
+                self.handleResult(result, error)
+                completion?()
+            })
+
+        } catch let error as NSError {
+            print("Error starting subscription. \(error)")
+//            errorHandling?.handleAppSyncErrors(for: AppSyncErrors(rawValue: error.code) ?? .generalError)
+        }
+        
+    }
+    
+    private func handleResult(_ result: GraphQLResult<SubscribeByUserIdSubscription.Data>?, _ error: Error?) {
+        
+        guard let result = result, error == nil else {
+            if let error = error as NSError? {
+                print(error.localizedDescription)
+//                errorHandling?.handleAppSyncErrors(for: AppSyncErrors(rawValue: error.code) ?? .generalError)
+            }
+            return
+        }
+//        guard let actionType = MessageActionTypes(rawValue: result.data?.subscribeByUserId?.actionType ?? 0) else {return}
+//        handleMessageActionType(actionType, result)
+    }
+    
+    
+    private func handleSubscriptionStatus(_ status: AWSAppSyncSubscriptionWatcherStatus, senderId: Int) {
+        switch status {
+        case .disconnected:
+            print("Subscribe - disconnected")
+        case .error(.connectionError):
+            print("Subscribe - connectionError")
+        case .connected:
+            print("Subscribe - connected")
+        case .connecting:
+            print("Subscribe - connecting")
+        case .error(.connectionRefused):
+            print("Subscribe - connectionRefused")
+        case .error(.disconnected):
+            print("Subscribe - disconnected")
+        case .error(.messageCallbackError(_)):
+            print("Subscribe - messageCallbackError")
+        case .error(.other(_)):
+            print("Subscribe - other")
+        case .error(.parseError(_)):
+            print("Subscribe - parseError")
+        case .error(.protocolError):
+            print("Subscribe - protocolError")
+        case .error(.setupError(_)):
+            print("Subscribe - setupError ")
+        case .error(.unknownMQTTConnectionStatus):
+            print("Subscribe - unknownMQTTConnectionStatus")
+        }
     }
 }

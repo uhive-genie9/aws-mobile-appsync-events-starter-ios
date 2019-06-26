@@ -1,0 +1,583 @@
+# this is an auto generated file. This will be overwritten
+mutation StartConversation($sender_id: Int!, $receiver_id: Int!) {
+  startConversation(sender_id: $sender_id, receiver_id: $receiver_id) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation StartSupportConversation($sender_id: Int!) {
+  startSupportConversation(sender_id: $sender_id) {
+    conversation_id
+    sender_id
+    receiver_id
+  }
+}
+mutation SetSeenConversation(
+  $receiver_id: Int!
+  $conversation_id: Int!
+  $last_msg_seen_id: Int!
+) {
+  setSeenConversation(
+    receiver_id: $receiver_id
+    conversation_id: $conversation_id
+    last_msg_seen_id: $last_msg_seen_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation AddMessage(
+  $receiver_id: Int
+  $user_id: Int!
+  $conversation_id: Int!
+  $local_id: Int!
+  $m_type: Int!
+  $text: String
+  $url: String
+  $url_title: String
+  $url_thumb_url: String
+  $url_domain: String
+  $url_text: String
+) {
+  addMessage(
+    receiver_id: $receiver_id
+    user_id: $user_id
+    conversation_id: $conversation_id
+    local_id: $local_id
+    m_type: $m_type
+    text: $text
+    url: $url
+    url_title: $url_title
+    url_thumb_url: $url_thumb_url
+    url_domain: $url_domain
+    url_text: $url_text
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation AddMessageV2(
+  $receiver_id: Int
+  $user_id: Int!
+  $conv_type: Int!
+  $conversation_id: Int!
+  $local_id: Int!
+  $m_type: Int!
+  $text: String
+  $url: String
+  $url_title: String
+  $url_thumb_url: String
+  $url_domain: String
+  $url_text: String
+) {
+  addMessage_v2(
+    receiver_id: $receiver_id
+    user_id: $user_id
+    conv_type: $conv_type
+    conversation_id: $conversation_id
+    local_id: $local_id
+    m_type: $m_type
+    text: $text
+    url: $url
+    url_title: $url_title
+    url_thumb_url: $url_thumb_url
+    url_domain: $url_domain
+    url_text: $url_text
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation PublishTyping(
+  $receiver_id: Int!
+  $conversation_id: Int!
+  $user_id: Int!
+  $action: Int!
+) {
+  publishTyping(
+    receiver_id: $receiver_id
+    conversation_id: $conversation_id
+    user_id: $user_id
+    action: $action
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation ChangeOnlineStatus($user_id: Int!, $is_online: Boolean!) {
+  changeOnlineStatus(user_id: $user_id, is_online: $is_online) {
+    last_seen
+    is_online
+  }
+}
+mutation NewGroupAdded($receiver_id: Int!, $group_id: Int!) {
+  newGroupAdded(receiver_id: $receiver_id, group_id: $group_id) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation StartGroupConversation(
+  $created_by_id: Int!
+  $title: String!
+  $description: String
+  $members: [GroupMemberInput!]
+) {
+  startGroupConversation(
+    created_by_id: $created_by_id
+    title: $title
+    description: $description
+    members: $members
+  ) {
+    conversation_id
+    created_by_id
+    title
+    description
+    members {
+      id
+    }
+  }
+}
+mutation LeaveGroupConversation($group_conversation_id: Int!, $user_id: Int!) {
+  leaveGroupConversation(
+    group_conversation_id: $group_conversation_id
+    user_id: $user_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation RemoveUserGroupConversation(
+  $group_conversation_id: Int!
+  $user_id: Int!
+) {
+  removeUserGroupConversation(
+    group_conversation_id: $group_conversation_id
+    user_id: $user_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation ToggleAdminGroupConversation(
+  $group_conversation_id: Int!
+  $user_id: Int!
+) {
+  toggleAdminGroupConversation(
+    group_conversation_id: $group_conversation_id
+    user_id: $user_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation PublishTypingGroupConversation(
+  $group_conversation_id: Int!
+  $user_id: Int!
+) {
+  publishTypingGroupConversation(
+    group_conversation_id: $group_conversation_id
+    user_id: $user_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}
+mutation AddUserGroupConversation(
+  $group_conversation_id: Int!
+  $receiver_id: Int!
+  $user_id: Int!
+) {
+  addUserGroupConversation(
+    group_conversation_id: $group_conversation_id
+    receiver_id: $receiver_id
+    user_id: $user_id
+  ) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}

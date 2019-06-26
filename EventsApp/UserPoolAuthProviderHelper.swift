@@ -12,8 +12,7 @@ import AWSCognitoIdentityProvider
 
 class UserPoolAuthProviderHelper: AWSCognitoUserPoolsAuthProvider {
     func getLatestAuthToken() -> String {
-        let token = UserDefaults.standard.string(forKey: "accessToken") ?? "TOKEN_NOT_FOUND"
-        print("Returning token \(token)")
-        return token
+        
+        return "eyJraWQiOiJ2Uzk4WmwweUZcL3dqQUlJdk9cL1hyK1dpUmFETDk5ZGtLXC85SlA1TXYwK25FPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzNTI2YTExZS0zMGQ5LTQ0NGYtYjdmMi00YjRiNWQ5YjI0M2EiLCJhdWQiOiI0MjE5MzA3OHRpMWttMmk4bDdxYjJqc2lkMiIsImN1c3RvbTp1aGl2ZV91c2VyX2lkIjoiNzUwNiIsImV2ZW50X2lkIjoiZjIzMDNjNDEtMjZkMS00YWFlLWI3ODEtMDAwYzI2ZWM4MDA3IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE1NjEzNjE2OTIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1Baek5tMXZLSCIsImNvZ25pdG86dXNlcm5hbWUiOiI3NTA2IiwiZXhwIjoxNTYxNTYwMTM1LCJpYXQiOjE1NjE1NTY1MzUsImVtYWlsIjoidXNlcl83NTA2QHVoaXZlLmNvbSJ9.YzGuc71fonr0osFiAtKc0MMSXYYJTLTSOsvToVHbfWXNnvGJkvaEf2Qw3eeRvNbW65hSNbsEHq_FyqW_HxHRhUqMTaSD1KAjCyW8haa6aewB-PGcF5rfy4ejnKL9GA-aQZeEO5s5HvvAy6Fnu4OPpq8AjgYfx4NZhFGnRrwUt9xQUWyby-ZtY8zZJlvSW54u0sjbkaFQwq5toQVy0DtEuadc5kmnmFFdhVKB8aaXjhhaCrHgEw1nwtVeWm4omE9uF1YXINRAa_RfzJYrFmn5Em7Y1kXjsWHmnIqKoZx1UM0WuIsCZWeLu3f4YujYFtPtwgpO7mkEq7y8IvuuqQ7GFg"
     }
 }

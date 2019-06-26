@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		169A3E6822C3ABCC00870BFA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169A3E6722C3ABCC00870BFA /* API.swift */; };
 		1700510021546E35008B16B6 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 170050FF21546E35008B16B6 /* awsconfiguration.json */; };
-		171A410D1FC5649F0040C400 /* EventsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171A410C1FC5649F0040C400 /* EventsAPI.swift */; };
 		17CBF3961FB4B2E00015BC6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CBF3951FB4B2E00015BC6A /* AppDelegate.swift */; };
 		17CBF3981FB4B2E00015BC6A /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CBF3971FB4B2E00015BC6A /* EventListViewController.swift */; };
 		17CBF39B1FB4B2E00015BC6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CBF3991FB4B2E00015BC6A /* Main.storyboard */; };
 		17CBF39D1FB4B2E00015BC6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17CBF39C1FB4B2E00015BC6A /* Assets.xcassets */; };
 		17CBF3A01FB4B2E00015BC6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17CBF39E1FB4B2E00015BC6A /* LaunchScreen.storyboard */; };
 		17CBF3A81FB4B3A40015BC6A /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CBF3A71FB4B3A40015BC6A /* AddEventViewController.swift */; };
-		17E009071FC5EE8F005031DB /* EventDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E009061FC5EE8F005031DB /* EventDetails.swift */; };
 		F60B72A3DBBCB5EE5348BAE8 /* Pods_EventsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49640E01CB7D0D9B4BABF41A /* Pods_EventsApp.framework */; };
 		FA0152D42284D3E6007E2E70 /* AmplifyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0152D32284D3E6007E2E70 /* AmplifyHelper.swift */; };
 		FA9148B12284CAB800F4C87D /* UserPoolAuthProviderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9148B02284CAB800F4C87D /* UserPoolAuthProviderHelper.swift */; };
@@ -35,8 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		169A3E6722C3ABCC00870BFA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = SOURCE_ROOT; };
 		170050FF21546E35008B16B6 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = SOURCE_ROOT; };
-		171A410C1FC5649F0040C400 /* EventsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAPI.swift; sourceTree = "<group>"; };
 		17CBF3921FB4B2E00015BC6A /* EventsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17CBF3951FB4B2E00015BC6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17CBF3971FB4B2E00015BC6A /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
@@ -45,7 +44,6 @@
 		17CBF39F1FB4B2E00015BC6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17CBF3A11FB4B2E00015BC6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17CBF3A71FB4B3A40015BC6A /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
-		17E009061FC5EE8F005031DB /* EventDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetails.swift; sourceTree = "<group>"; };
 		49640E01CB7D0D9B4BABF41A /* Pods_EventsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EventsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5F38C6DD729BD9564F31608 /* Pods-EventsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CC70F242478FEFDE57B38FAC /* Pods-EventsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EventsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EventsApp/Pods-EventsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +84,7 @@
 		17CBF3941FB4B2E00015BC6A /* EventsApp */ = {
 			isa = PBXGroup;
 			children = (
+				169A3E6722C3ABCC00870BFA /* API.swift */,
 				170050FF21546E35008B16B6 /* awsconfiguration.json */,
 				17CBF3951FB4B2E00015BC6A /* AppDelegate.swift */,
 				FA0152D32284D3E6007E2E70 /* AmplifyHelper.swift */,
@@ -96,8 +95,6 @@
 				17CBF39C1FB4B2E00015BC6A /* Assets.xcassets */,
 				17CBF39E1FB4B2E00015BC6A /* LaunchScreen.storyboard */,
 				17CBF3A11FB4B2E00015BC6A /* Info.plist */,
-				17E009061FC5EE8F005031DB /* EventDetails.swift */,
-				171A410C1FC5649F0040C400 /* EventsAPI.swift */,
 			);
 			path = EventsApp;
 			sourceTree = "<group>";
@@ -247,10 +244,9 @@
 			files = (
 				FA9148B12284CAB800F4C87D /* UserPoolAuthProviderHelper.swift in Sources */,
 				FA0152D42284D3E6007E2E70 /* AmplifyHelper.swift in Sources */,
-				17E009071FC5EE8F005031DB /* EventDetails.swift in Sources */,
 				17CBF3981FB4B2E00015BC6A /* EventListViewController.swift in Sources */,
-				171A410D1FC5649F0040C400 /* EventsAPI.swift in Sources */,
 				17CBF3961FB4B2E00015BC6A /* AppDelegate.swift in Sources */,
+				169A3E6822C3ABCC00870BFA /* API.swift in Sources */,
 				17CBF3A81FB4B3A40015BC6A /* AddEventViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,11 +390,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W3DRXD72QU;
+				DEVELOPMENT_TEAM = Z3L5T8R576;
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.EventsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eventsAPP.EventsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,11 +407,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W3DRXD72QU;
+				DEVELOPMENT_TEAM = Z3L5T8R576;
 				INFOPLIST_FILE = EventsApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amazonaws.EventsApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eventsAPP.EventsApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

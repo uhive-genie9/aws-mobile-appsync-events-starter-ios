@@ -29,38 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        AWSDDLog.sharedInstance.logLevel = .verbose
-        AWSDDLog.sharedInstance.add(AWSDDTTYLogger.sharedInstance)
-
-        pool = AWSCognitoIdentityUserPool.default()
-        pool.delegate = self
-
-        let currentUser = pool.currentUser()
-        print("pool.currentUser: \(String(describing: currentUser))")
-
-        currentUser?.getSession().continueWith { task in
-            print("getSession.task: \(String(describing: task))")
-            guard task.error == nil else {
-                print("getSession error: \(task.error!)")
-                return nil
-            }
-
-            guard let session = task.result else {
-                print("getSession: task result unexpectedly nil")
-                return nil
-            }
-
-            guard let accessToken = session.accessToken?.tokenString else {
-                print("accessToken is nil")
-                return nil
-            }
-
-            UserDefaults.standard.set(accessToken, forKey: "accessToken")
-            return nil
-        }
 
         amplifyHelper = AmplifyHelper()
-        amplifyHelper.configureAmplify()
+        amplifyHelper.configureAmplify {[weak self] in
+            self?.amplifyHelper.startUserSubscription()
+        }
 
         return true
     }

@@ -1,0 +1,42 @@
+# this is an auto generated file. This will be overwritten
+subscription SubscribeByUserId($receiver_id: Int) {
+  subscribeByUserID(receiver_id: $receiver_id) {
+    action_type
+    receiver_id
+    message {
+      message_id
+      user_id
+      conv_type
+      conversation_id
+      local_id
+      m_type
+      status
+      timestamp
+      text
+      url
+      url_title
+      url_thumb_url
+      url_domain
+      url_text
+    }
+    typing {
+      action
+      receiver_id
+      conversation_id
+      user_id
+      conversation_type
+    }
+    seen {
+      last_msg_seen_id
+      conversation_id
+    }
+    conversation {
+      conversation_id
+      timestamp
+      peer_user {
+        user_id
+        name
+      }
+    }
+  }
+}

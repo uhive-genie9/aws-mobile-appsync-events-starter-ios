@@ -1,0 +1,108 @@
+# this is an auto generated file. This will be overwritten
+query GetConversationMessages(
+  $user_id: Int!
+  $conversation_id: Int!
+  $fetch_count: Int!
+  $start_from: Int
+) {
+  getConversationMessages(
+    user_id: $user_id
+    conversation_id: $conversation_id
+    fetch_count: $fetch_count
+    start_from: $start_from
+  ) {
+    message_id
+    user_id
+    conv_type
+    conversation_id
+    local_id
+    m_type
+    status
+    timestamp
+    text
+    url
+    url_title
+    url_thumb_url
+    url_domain
+    url_text
+  }
+}
+query GetUserMessages($user_id: Int!, $fetch_count: Int!, $start_from: Int) {
+  getUserMessages(
+    user_id: $user_id
+    fetch_count: $fetch_count
+    start_from: $start_from
+  ) {
+    message_id
+    user_id
+    conv_type
+    conversation_id
+    local_id
+    m_type
+    status
+    timestamp
+    text
+    url
+    url_title
+    url_thumb_url
+    url_domain
+    url_text
+  }
+}
+query GetUserConversations(
+  $user_id: Int
+  $fetch_count: Int!
+  $start_from: Int
+) {
+  getUserConversations(
+    user_id: $user_id
+    fetch_count: $fetch_count
+    start_from: $start_from
+  ) {
+    conversation_id
+    timestamp
+    peer_user {
+      user_id
+      name
+    }
+  }
+}
+query GetUserConversationsDep(
+  $user_id: Int
+  $fetch_count: Int!
+  $start_from: Int
+) {
+  getUserConversations_dep(
+    user_id: $user_id
+    fetch_count: $fetch_count
+    start_from: $start_from
+  ) {
+    conversation_id
+    sender_id
+    receiver_id
+  }
+}
+query GetUserConversationsBassamTest(
+  $user_id: Int
+  $fetch_count: Int!
+  $start_from: Int
+) {
+  getUserConversations_BassamTest(
+    user_id: $user_id
+    fetch_count: $fetch_count
+    start_from: $start_from
+  ) {
+    conversation_id
+    timestamp
+    peer_user {
+      user_id
+      name
+    }
+  }
+}
+query GetUserOnlineStatus($user_id: Int!) {
+  getUserOnlineStatus(user_id: $user_id) {
+    last_seen
+    is_online
+  }
+}

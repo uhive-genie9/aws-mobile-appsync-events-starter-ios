@@ -1,0 +1,14 @@
+{
+    "ios": {
+        "awscloudformation": {
+            "AuthRoleName": "awsmobileappsynceven-ios-20190626162555-authRole",
+            "UnauthRoleArn": "arn:aws:iam::829980417672:role/awsmobileappsynceven-ios-20190626162555-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::829980417672:role/awsmobileappsynceven-ios-20190626162555-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "awsmobileappsynceven-ios-20190626162555-deployment",
+            "UnauthRoleName": "awsmobileappsynceven-ios-20190626162555-unauthRole",
+            "StackName": "awsmobileappsynceven-ios-20190626162555",
+            "StackId": "arn:aws:cloudformation:us-east-1:829980417672:stack/awsmobileappsynceven-ios-20190626162555/ee64cf30-9815-11e9-95ab-12926a34023c"
+        }
+    }
+}
